@@ -51,38 +51,38 @@
                                 <div class="basic-form">
                                     <form action="/addQuery" method="post" id="confirmationForm">
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Question</label>
-                                            <div class="col-sm-10">
+                                            <label class="col-sm-3 col-form-label">Question</label>
+                                            <div class="col-sm-9">
                                             <input class="form-control" name="ques" type="text" placeholder="Add question here…">
                                         </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Query1</label>
-                                            <div class="col-sm-10">
+                                            <label class="col-sm-3 col-form-label">Keyword1</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" name="query1" class="form-control" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Query2</label>
-                                            <div class="col-sm-10">
+                                            <label class="col-sm-3 col-form-label">Keyword2</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" name="query2" class="form-control" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Query3</label>
-                                            <div class="col-sm-10">
+                                            <label class="col-sm-3 col-form-label">Keyword3</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" name="query3" class="form-control" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Query4</label>
-                                            <div class="col-sm-10">
+                                            <label class="col-sm-3 col-form-label">Keyword4</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" name="query4" class="form-control" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Answer</label>
-                                            <div class="col-sm-10">
+                                            <label class="col-sm-3 col-form-label">Answer</label>
+                                            <div class="col-sm-9">
                                                 <textarea class="form-control" name="answer" rows="4" form="confirmationForm"></textarea>
                                             </div>
                                         </div>
@@ -101,61 +101,21 @@
 				</div>
             </div>
         </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
 
-        <!--**********************************
-            Footer start
-        ***********************************-->
         <div class="footer">
            
         </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
-
-		<!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
+    
 
 
     </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
 
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <!-- Required vendors -->
     <script src="./vendor/global/global.min.js"></script>
 	<script src="./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 	<script src="./vendor/chart.js/Chart.bundle.min.js"></script>
     <script src="./js/custom.min.js"></script>
 	<script src="./js/deznav-init.js"></script>
-
-    <!-- Datatable -->
     <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script>
-		(function($) {
-			var table = $('#example5').DataTable({
-				searching: false,
-				paging:true,
-				select: false,
-				//info: false,         
-				lengthChange:false 
-				
-			});
-			$('#example tbody').on('click', 'tr', function () {
-				var data = table.row( this ).data();
-				
-			});
-		})(jQuery);
-	</script>
+
 </body>
 </html>

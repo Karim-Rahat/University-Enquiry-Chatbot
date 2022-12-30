@@ -12,16 +12,13 @@
 </style>
 
 
-	<!-- Datatable -->
     <%- include('../template/style') %> 
   
 
 	
 </head>
 <body onload="getData()" class="cover">
-      <!--*******************
-        Preloader start
-    ********************-->
+  
     <div id="preloader">
         <div class="sk-three-bounce">
             <div class="sk-child sk-bounce1"></div>
@@ -29,9 +26,7 @@
             <div class="sk-child sk-bounce3"></div>
         </div>
     </div>
-    <!--*******************
-        Preloader end
-    ********************-->
+
     <div id="main-wrapper">
     <%- include('../template/navbar'); -%>
 <div class="chatbox ">
@@ -85,7 +80,7 @@
                             <a href="javascript:void(0)" data-toggle="dropdown" ><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li class="dropdown-item"><i class="fa fa-user-circle text-primary mr-2"></i> View profile</li>
-                                <li class="dropdown-item"><i class="fa fa-users text-primary mr-2"></i>Delete Conversation</li>
+                                <li class="dropdown-item" onclick="delConversation()"><i class="fa fa-trash fa-lg text-primary mr-2"></i>Delete Conversation</li>
 
                             </ul>
                         </div>
@@ -126,8 +121,8 @@
 
 
     <%- include('../template/scripts') %> 
-    <script src="./js/chatbot.js"></script>
-    <!-- Datatable -->
+    <script src="./customjs/chatbot.js"></script>
+ 
 
 
  

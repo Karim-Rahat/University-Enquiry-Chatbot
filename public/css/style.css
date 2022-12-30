@@ -13803,7 +13803,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   overflow: hidden; }
   .chatbox .nav {
     padding: 1rem 1rem 0 1rem;
-    background: #007A64;
+    background: #1e516e;
     border: 0;
     justify-content: space-between; }
     .chatbox .nav .nav-link {
@@ -13967,7 +13967,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     .chatbox .img_cont_msg img {
       width: 100%; }
   .chatbox .msg_cotainer {
-    background: #007A64;
+    background: #1e516e;
     margin-left: 10px;
     border-radius: 0 1.25rem 1.25rem 1.25rem;
     padding: 10px 15px;

@@ -49,9 +49,7 @@ function getData() {
 
   //routine
 
-
   //holiday
-
 
 
   //predefined 
@@ -218,16 +216,15 @@ function chatBotGen() {
   });
 
 
-  //check greetings
-  greet
-    ? answers.push(
-        greetingsAnswer[Math.floor(Math.random() * greetingsAnswer.length)]
-      )
-    : "";
-  //check if no class
-  hasClass == false && answers.length == 0 && week
-    ? (answers[0] = `${batch} has no class in ${week}`)
-    : "";
+    // check greetings
+    if (greet) {
+      answers.push(greetingsAnswer[Math.floor(Math.random() * greetingsAnswer.length)]);
+  }
+
+  // check if no class
+  if (hasClass == false && answers.length == 0 && week) {
+      answers[0] = `${batch} has no class in ${week}`;
+  }
 
   //call the answer generator function
   predefinedAnsGen(ques, answers);
@@ -306,12 +303,9 @@ if(queryCount==keyCount){
 
 }
 
-
-
     })
 
 
-  
       chatAnsGen(ques, answers);
    
  
@@ -322,19 +316,20 @@ if(queryCount==keyCount){
 
 
 
-
-
-
-
-
-
-
 //answer implementation in dom
 
 async function chatAnsGen(ques, ans) {
  
   const audioRcv = document.getElementById("audiorcv");
   const audioSend = document.getElementById("audiosend");
+ 
+  const date = new Date();
+  const now=date.toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  })
+  .toLowerCase();
 
   let answer = "";
   if (ans.length > 0) {
@@ -342,8 +337,9 @@ async function chatAnsGen(ques, ans) {
       chatId++;
       answer += `${item} <br>`;
     });
-  } else {
-   
+  } 
+  else {
+    chatId++;
     answer = "No answer has been found!!Can you be more specefic?";
   }
 
@@ -364,7 +360,7 @@ async function chatAnsGen(ques, ans) {
 </div>
 <div class="msg_cotainer">
     ${answer}
-    <span class="msg_time">8:40 AM, Today</span>
+    <span class="msg_time">${now}, Today</span>
 </div>
 </div>
 `;
@@ -374,7 +370,7 @@ async function chatAnsGen(ques, ans) {
 
 <div class="msg_cotainer_send">
     ${ques}
-    <span class="msg_time_send">8:55 AM, Today</span>
+    <span class="msg_time_send">${now}</span>
 </div>
 <div class="img_cont_msg ">
 
@@ -393,12 +389,15 @@ async function chatAnsGen(ques, ans) {
 
   setTimeout(function () {
     cardBody.insertAdjacentHTML("beforeend", student);
+ 
     audioRcv.play();
+
   }, 0);
 
   setTimeout(function () {
     cardBody.insertAdjacentHTML("beforeend", chatbot);
     audioSend.play();
+    speechToText(answer) 
   }, 1000);
 
   setTimeout(function () {
@@ -432,17 +431,22 @@ async function chatAnsGen(ques, ans) {
     .then((response) => response.json())
     .then((data) => {
       chatId=data[0]
+      console.log(chatId,'chatid');
     });
 
   //end chat saved history module
 }
 
+
+//male voice
 function speechToText(txt) {
+  const synth = window.speechSynthesis;
+  const voices = synth.getVoices();
   let msg = new SpeechSynthesisUtterance();
+  msg.voice=voices[1]
   msg.text = txt;
   window.speechSynthesis.speak(msg);
 }
-
 
 
 function getChatHistoryGenerate(chat_id,ques, answer) {
@@ -518,20 +522,36 @@ function report(i){
 
 }
 
+function delConversation(){
+ 
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this conversation!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      fetch("/deleteConversation", {
+        method: "GET",
+     
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }) .then((response) => response.json())
+      .then((data) => {
+        if(data.acknowledged==true){
+          cardBody.innerHTML=""
+        }
+      });
+      swal("Poof! Your Conversation has been deleted!", {
+        icon: "success",
+      });
+    } else {
+      swal("Your Conversation is safe!");
+    }
+  });
 
-// const dropDown=document.getElementsByClassName('dropdown')[0]
-// const list=document.getElementsByClassName('dropdown-menu')[0]
-// dropDown.addEventListener('click',function(){
-//   if(  list.style.display=="none")
-//   list.style.display="block"
-
-// })
-
-// // document.addEventListener('click',function(e){
-
-// //   if(e.target.parentNode.className!='dropdown-menu' || e.target.parentNode.className!='toggle')
-// //  {
-// //   console.log(e.target.parentNode.className);
-// //   list.style.display="none"
-// //  }
-// // })
+ 
+}

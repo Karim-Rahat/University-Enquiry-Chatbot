@@ -2,7 +2,6 @@ const router=require('express').Router()
 const AppDataController=require('../controllers/AppDataControllers')
 const DatainsertController=require('../controllers/DataInsertControllers')
 const DataFetchControllers=require('../controllers/DataFetchControllers')
-const DataFetchModel = require('../models/DataFetchModel')
 
 
 
@@ -23,8 +22,6 @@ router.get('/viewStudentsQuery/:id',AppDataController.queryList)
 router.get('/allQuery',AppDataController.allQuery)
 router.get('/addQueryList',AppDataController.addQueryList)
 router.get('/viewPredefined',AppDataController.viewPredefined)
-//fetch
-
 
 router.get('/accountCreated',AppDataController.accountCreated)
 router.get('/getData',DataFetchControllers.getData)
@@ -36,6 +33,6 @@ router.get('/getSingleUsersData/:id',DataFetchControllers.getSingleUsersData)
 router.get('/getPredefinedQues',DataFetchControllers.getPredefinedQues)
 router.get('/getPredefinedQues/:id',AppDataController.getSinglePredefinedQues)
 router.get('/deletePredefinedQues/:id',AppDataController.deletePredefinedQues)
-
+router.get('/deleteConversation',AppDataController.removeConversation)
 router.get("/logout", AppDataController.logout);
 module.exports = router

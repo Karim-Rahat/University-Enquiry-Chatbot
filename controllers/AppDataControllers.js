@@ -85,7 +85,7 @@ const AppDataController = {
 
   getSinglePredefinedQues: async(req,res)=>{
     const id=req.params.id
-    console.log(id);
+   
     const data= await DataFetchModel.getSinglePredefinedQues(id)
     const adminData = [req.session.adminName, req.session.admin_email];
     console.log(data);
@@ -113,6 +113,25 @@ getInvalidQues: async(req,res)=>{
       res.redirect("/");
     });
   },
+
+  removeConversation: async(req,res)=>{
+    
+  const userId=req.session.user_Id 
+  const uri = "mongodb+srv://farjanaSultana:farjana123@chatbot.rnetqs2.mongodb.net/?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("chatbot").collection("chat_history");
+
+        collection.deleteMany({ "userId" : userId } ,function (err, docs) {
+          
+          res.send(docs)
+         
+          client.close();
+  
+        });
+   
+  });
+  }
 
 };
 
