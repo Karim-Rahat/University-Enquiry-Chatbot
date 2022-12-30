@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%- include('../template/style') %> 
+</head>
+<body onload="getData()" >
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+		<%- include('../template/sideNav') %> 
+		
+		<!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+			<div class="container-fluid">
+				<div class="form-head align-items-center d-flex mb-sm-4 mb-3">
+					<div class="mr-auto">
+						<h2 class="text-black font-w600">University Enquiry Chatbot Dashboard</h2>
+						<p class="mb-0">Queries asked by Student</p>
+					</div>
+				
+				</div>
+		
+				<div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"></h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive ">
+                                    <table  class="table table-striped text-black table-bordered">
+                                        <thead>
+                                            <tr >
+                                          
+                                                <th style="font-size: 12px;width: 140px;">Student's Name</th>
+                                                <th style="font-size: 12px;width: 100px;">Created at</th>
+                                                <th style="font-size: 12px;width: 200px;">Queries  by students</th>
+                                                <th style="font-size: 12px;">Reply of Query By Chatbot</th>
+                                     
+                                              
+                                                <th style="font-size: 12px;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="queryList" style="font-size: 14px;">
+                                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					</div>
+				</div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+           
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+
+
+    <script>
+
+const userid = document.getElementById('userId')
+
+     const queryListRow=document.getElementById('queryList')
+     let queryList = [];
+     let userData=[]
+   async function getData(e) {
+     console.log();
+
+ 
+     await  fetch(`/getUsersData`)
+       .then((response) => response.json())
+       .then((data) => {
+         userData = data;
+
+        console.log(userData);
+
+       });
+    await  fetch(`/getAllChatHistory`)
+       .then((response) => response.json())
+       .then((data) => {
+         queryList = data;
+console.log(queryList);
+         getChatHistoryGenerate(queryList);
+
+       });
+   }
+
+   async function getChatHistoryGenerate(queryList) {
+     queryList.map(item => {
+       var d = new Date(item.timestamp);
+       let stuName;
+  userData.map(item2=>{
+        if(item2.user_id==item.userId )
+      stuName=(item2.first_name + ' '+item2.last_name)
+    })
+
+       const element = `<tr>
+  
+        <td>${stuName}</td>
+        <td>${d.toLocaleDateString('en-US')+' '+ d.toLocaleTimeString('en-US')}</td>
+        <td>${item.user}</td>
+    
+        <td id="chatBot">${item.chatbot}</td>
+    
+        <td>
+            <div class="d-flex">
+                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+            </div>												
+        </td>												
+    </tr>`
+ 
+queryListRow.insertAdjacentHTML('beforeend',element)
+})
+
+if(queryList.length==0){
+    const element = `<tr > 
+        <td colspan="5"><h2> No Chat history Found!!  </h2></td>
+        </tr>`
+        queryListRow.insertAdjacentHTML('beforeend',element)
+}
+   }
+ </script>
+ </body>
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="/./vendor/global/global.min.js"></script>
+	<script src="/./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="/./js/custom.min.js"></script>
+	<script src="/./js/deznav-init.js"></script>
+	
+    <!-- Datatable -->
+    <script src="/./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/./js/plugins-init/datatables.init.js"></script>
+ </html>

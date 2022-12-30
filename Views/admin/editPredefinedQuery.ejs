@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%- include('../template/style') %> 
+</head>
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+		<%- include('../template/sideNav') %> 
+		
+		<!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+			<div class="container-fluid">
+				<div class="form-head align-items-center d-flex mb-sm-4 mb-3">
+					<div class="mr-auto">
+						<h2 class="text-black font-w600">University Enquiry Chatbot Dashboard</h2>
+						<p class="mb-0">Update Pre-defined Query</p>
+					</div>
+				
+				</div>
+			
+				<div class="row">
+                    <div class="col-xl-8 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">EDIT QUERY</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="basic-form">
+                                    <form action="/editQuery/<%=data.id%>" method="post" id="confirmationForm">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Question</label>
+                                            <div class="col-sm-10">
+                                            <input class="form-control" name="ques" type="text" value="<%= data.question %>" placeholder="Add question here…">
+                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Query1</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="query1" class="form-control"value="<%= data.query1 %>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Query2</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="query2" class="form-control" value="<%= data.query2 %>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Query3</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="query3" class="form-control" value="<%= data.query3 %>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Query4</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="query4" class="form-control" value="<%= data.query4 %>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Answer</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" name="answer" rows="4" form="confirmationForm"><%= data.answer%></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"></label>
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="btn btn-primary mt-3">Update</button>
+                                            </div>
+                                        </div>
+                                       
+                                    </form>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+           
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="/./vendor/global/global.min.js"></script>
+	<script src="/./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="/./js/custom.min.js"></script>
+	<script src="/./js/deznav-init.js"></script>
+	
+    <!-- Datatable -->
+    <script src="/./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/./js/plugins-init/datatables.init.js"></script>
+ </html>
+
+</body>
+</html>

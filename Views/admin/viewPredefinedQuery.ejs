@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../template/style') %>
+        <style>
+            ol li {
+                list-style: square;
+                list-style-position: inside;
+            }
+        </style>
+</head>
+
+<body >
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <%- include('../template/sideNav') %>
+
+            <!--**********************************
+            Content body start
+        ***********************************-->
+            <div class="content-body">
+                <!-- row -->
+                <div class="container-fluid">
+                    <div class="form-head align-items-center d-flex mb-sm-4 mb-3">
+                        <div class="mr-auto">
+                            <h2 class="text-black font-w600">University Enquiry Chatbot Dashboard</h2>
+                            <p class="mb-0"></p>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"> Pre-defined Query List</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive ">
+                                        <table class="table table-striped text-black table-bordered">
+                                            <thead>
+                                                <tr>
+
+                                                    <th style="font-size: 14px;width: 280px; font-weight: bolder;">Question</th>
+                                                    <th style="font-size: 14px;width: 170px;  font-weight: bolder;">query1</th>
+                                                    <th style="font-size: 14px;width: 170px;  font-weight: bolder;">query2</th>
+                                                    <th style="font-size: 14px;width: 170px;  font-weight: bolder;">query3</th>
+                                                    <th style="font-size: 14px;width: 170px;  font-weight: bolder; ">query4</th>
+                                                    <th style="font-size: 14px; font-weight: bolder;">Answer</th>
+
+
+                                                    <th style="font-size: 14px; font-weight: bolder;">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="queryList" style="font-size: 14px;">
+                                                <% data.map(item=>{ %>
+
+
+                                                    <tr>
+
+                                                        <td style="font-weight:600;">
+                                                            <%=item.question %>
+                                                        </td>
+
+                                                        <td>
+                                                            <ol>
+                                                                <% item.query1.split(',').map(el=>{ %>
+                                                                    <li>
+                                                                        <%=el?el:'No keywords' %>
+                                                                    </li>
+                                                                    <% }) %>
+                                                            </ol>
+                                                        </td>
+
+
+
+                                                        <td>
+                                                            <ol>
+                                                                <% item.query2.split(',').map(el=>{ %>
+                                                                    <li>
+                                                                        <%=el?el:'No keywords' %>
+                                                                    </li>
+                                                                    <% }) %>
+                                                            </ol>
+                                                        </td>
+
+
+                                                        <td>
+                                                            <ol>
+                                                                <% item.query3.split(',').map(el=>{ %>
+                                                                    <li>
+                                                                        <%=el?el:'No keywords' %>
+                                                                    </li>
+                                                                    <% }) %>
+                                                            </ol>
+                                                        </td>
+
+
+                                                        <td>
+                                                            <ol>
+                                                                <% item.query4.split(',').map(el=>{ %>
+                                                                    <li>
+                                                                        <%=el?el:'No keywords' %>
+                                                                    </li>
+                                                                    <% }) %>
+                                                            </ol>
+                                                        </td>
+                                                        <td>
+                                                            <%= item.answer %>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <a href="/getPredefinedQues/<%=item.id%>"
+                                                                    class="btn btn-primary shadow btn-xs sharp mr-1"><i
+                                                                        class="fa fa-pencil"></i></a>
+                                                                <a  href="/deletePredefinedQues/<%=item.id%>"
+                                                                    class="btn btn-danger shadow btn-xs sharp"><i
+                                                                        class="fa fa-trash"></i></a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!--**********************************
+            Content body end
+        ***********************************-->
+
+    <!--**********************************
+            Footer start
+        ***********************************-->
+    <div class="footer">
+
+    </div>
+    <!--**********************************
+            Footer end
+        ***********************************-->
+
+    <!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+    <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+
+
+
+</body>
+
+
+<script src="/./vendor/global/global.min.js"></script>
+<script src="/./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="/./js/custom.min.js"></script>
+<script src="/./js/deznav-init.js"></script>
+
+<!-- Datatable -->
+<script src="/./vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/./js/plugins-init/datatables.init.js"></script>
+
+</html>
